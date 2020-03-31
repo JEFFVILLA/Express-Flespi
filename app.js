@@ -1,18 +1,17 @@
 const fs = require("fs");
-const express = require("express");
+var express = require("express");
+var port = process.env.PORT || 3000;
+var app = express();
 
-// create a HTTP server application
-const app = express();
-
-// configure json parsing middleware
 app.use(
   express.json({
     limit: "10mb",
     strict: true
   })
 );
-
-// HTTP requests handler function
+app.get("/", function(req, res) {
+  res.send(JSON.stringify({ Hello: "World" }));
+});
 app.post("/post", (req, res) => {
   console.log(req.body);
   // now req.body will be a parsed object containing messages array like this:
@@ -35,5 +34,6 @@ app.post("/post", (req, res) => {
   res.end();
 });
 
-// start listening on port 7777
-app.listen(7777);
+app.listen(port, function() {
+  console.log(`Example app listening on port !`);
+});
