@@ -2,7 +2,7 @@ const fs = require("fs");
 var express = require("express");
 var port = process.env.PORT || 3000;
 var app = express();
-
+let data;
 app.use(
   express.json({
     limit: "10mb",
@@ -11,9 +11,11 @@ app.use(
 );
 app.get("/", function(req, res) {
   res.send(JSON.stringify({ Hello: "World" }));
+  console.log(this.data);
 });
 app.post("/post", (req, res) => {
   console.log(req.body);
+  this.data = req.body;
   // now req.body will be a parsed object containing messages array like this:
   /* [ { 'channel.id': 94,
     ident: '1234',
