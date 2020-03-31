@@ -15,7 +15,6 @@ app.use(
 // HTTP requests handler function
 app.post("/post", (req, res) => {
   console.log(req.body);
-  console.log(res);
   // now req.body will be a parsed object containing messages array like this:
   /* [ { 'channel.id': 94,
     ident: '1234',
